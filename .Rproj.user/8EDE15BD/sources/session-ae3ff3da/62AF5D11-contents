@@ -1,0 +1,22 @@
+library(quantmod)
+library(shiny)
+library(shinydashboard)
+library(dplyr)
+library(ggplot2)
+library(DT)
+library(tidyverse)
+library(lubridate)
+library(RColorBrewer)
+library(hrbrthemes)
+
+
+master_df <- read.csv("suicidios_2010_a_2019.csv")
+
+column_list <- c("AC","AL","AP","AM", "BA", "CE", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS","RO" ,"RR" ,"SC" ,"SP", "SE","TO" ,"DF")
+
+time_list <- c("2010","2011","2012","2013","2014","2015","2016","2017", "2018", "2019")
+
+master_df$X <- NULL
+
+master_df <- master_df %>% drop_na()
+master_df$DTOBITO <- strptime(master_df$DTOBITO, format="%Y")
